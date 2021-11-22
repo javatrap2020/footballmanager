@@ -3,6 +3,7 @@ package com.javatrap2020.footballmanager.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,40 +11,60 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-public class Player {
+public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private  Long id;
 
-    @NotBlank(message = "Player name")
+    @NotBlank(message = "Team name")
     private String name;
 
-    @Column(nullable = false)
-    private int playerNumber;
+    @NotBlank(message = "Team identifier")
+    @Column(updatable = false, unique = true)
+    private String teamIdentifier;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyy-MM-dd")
     private Date createdAt;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "team_id", updatable = false, nullable = false)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "team")
     @JsonIgnore
     private Team team;
 
-    @Column(updatable = false)
-    private String teamIdentifier;
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "team", orphanRemoval = true)
+    private List<Player> players = new ArrayList<>();
 
-    public Player() {
+    public Team() {
+    }
+
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
     public Long getId() {
@@ -62,12 +83,12 @@ public class Player {
         this.name = name;
     }
 
-    public int getPlayerNumber() {
-        return playerNumber;
+    public String getTeamIdentifier() {
+        return teamIdentifier;
     }
 
-    public void setPlayerNumber(int playerNumber) {
-        this.playerNumber = playerNumber;
+    public void setTeamIdentifier(String teamIdentifier) {
+        this.teamIdentifier = teamIdentifier;
     }
 
     public Date getCreatedAt() {
@@ -86,44 +107,25 @@ public class Player {
         this.updatedAt = updatedAt;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
-    public String getTeamIdentifier() {
-        return teamIdentifier;
-    }
-
-    public void setTeamIdentifier(String teamIdentifier) {
-        this.teamIdentifier = teamIdentifier;
-    }
-
     @PrePersist
     protected void onCreate() {
         this.createdAt = new Date();
     }
 
-    @PreUpdate
     protected void onUpdate() {
         this.updatedAt = new Date();
     }
 
+
+
     @Override
     public String toString() {
-        return "Player{" +
+        return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", playerNumber=" + playerNumber +
+                ", teamIdentifier='" + teamIdentifier + '\'' +
                 ", createdAt=" + createdAt +
-                ", createdAt=" + updatedAt +
-                ", createdAt=" + team +
-                ", updatedAt=" + teamIdentifier + '\'' +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
-
-
 }
