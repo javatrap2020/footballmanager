@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,8 +38,9 @@ public class Team {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "team")
+    
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "team_id", nullable = false)
     @JsonIgnore
     private Team team;
 
