@@ -38,7 +38,7 @@ public class Team {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
-    
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "team_id", nullable = false)
     @JsonIgnore

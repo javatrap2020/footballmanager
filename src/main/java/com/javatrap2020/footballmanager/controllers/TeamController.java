@@ -1,5 +1,6 @@
 package com.javatrap2020.footballmanager.controllers;
 
+import com.javatrap2020.footballmanager.model.Player;
 import com.javatrap2020.footballmanager.model.Team;
 import com.javatrap2020.footballmanager.services.MapValidationErrorService;
 import com.javatrap2020.footballmanager.services.PlayerService;
@@ -40,6 +41,12 @@ public class TeamController {
         Iterable<Team> teams = teamService.getAll();
         return teams;
     }
+    @GetMapping("/players")
+    public Iterable<Player> getAllPlayers() {
+        Iterable<Player> players = playerService.getAll();
+        return players;
+    }
+
 
     @GetMapping("/id={id}")
     public Optional<Team> getTeamById(@PathVariable Long id) {
