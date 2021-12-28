@@ -9,4 +9,5 @@ mvn package
 
 mvn spring-boot:run
 
-#------------------------------ Port starting at http://localhost:8085
+#------------------------------ Port starting at http://localhost:8087
+localhost:8087/team/all

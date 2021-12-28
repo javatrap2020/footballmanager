@@ -2,7 +2,9 @@ package com.javatrap2020.footballmanager.services;
 
 import com.javatrap2020.footballmanager.exceptions.TeamIdException;
 import com.javatrap2020.footballmanager.model.Team;
+import com.javatrap2020.footballmanager.model.TeamSquad;
 import com.javatrap2020.footballmanager.repositories.TeamRepository;
+import com.javatrap2020.footballmanager.repositories.TeamSquadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
 
+    @Autowired
+    private TeamSquadRepository teamSquadRepository;
+
     public Iterable<Team> getAll() {
         return teamRepository.findAll();
     }
@@ -22,12 +27,13 @@ public class TeamService {
         try {
             teamX.setTeamIdentifier(teamX.getTeamIdentifier().toUpperCase());
             if (teamX.getId() == null) {
-                Team team = new Team();
-                teamX.setTeam(team);
-                team.setTeamIdentifier(teamX.getTeamIdentifier().toUpperCase());
+                TeamSquad teamSquad = new TeamSquad();
+                teamX.setTeamSquad(teamSquad);
+                teamSquad.setTeam(teamX);
+                teamSquad.setTeamIdentifier(teamX.getTeamIdentifier().toUpperCase());
             }
             if (teamX.getId() != null) {
-                teamX.setTeam(teamRepository.findByTeamIdentifier(
+                teamX.setTeamSquad(teamSquadRepository.findByTeamIdentifier(
                         teamX.getTeamIdentifier().toUpperCase()));
             }
             return teamRepository.save(teamX);

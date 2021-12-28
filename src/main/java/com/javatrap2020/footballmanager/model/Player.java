@@ -23,7 +23,7 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Player name")
+    @NotBlank(message = "Player name is required")
     private String name;
 
     @Column(nullable = false)
@@ -36,9 +36,9 @@ public class Player {
     private Date updatedAt;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "team_id", updatable = false, nullable = false)
+    @JoinColumn(name = "team_squad_id", updatable = false, nullable = false)
     @JsonIgnore
-    private Team team;
+    private TeamSquad teamSquad;
 
     @Column(updatable = false)
     private String teamIdentifier;
@@ -86,12 +86,12 @@ public class Player {
         this.updatedAt = updatedAt;
     }
 
-    public Team getTeam() {
-        return team;
+    public TeamSquad getTeam() {
+        return teamSquad;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTeamSquad(TeamSquad teamSquad) {
+        this.teamSquad = teamSquad;
     }
 
     public String getTeamIdentifier() {
@@ -120,7 +120,7 @@ public class Player {
                 ", playerNumber=" + playerNumber +
                 ", createdAt=" + createdAt +
                 ", createdAt=" + updatedAt +
-                ", createdAt=" + team +
+                ", createdAt=" + teamSquad +
                 ", updatedAt=" + teamIdentifier + '\'' +
                 '}';
     }

@@ -9,4 +9,6 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
 
     Iterable<Player> findByName(String name);
 
+    Iterable<Player> findByTeamIdentifier(String teamIdentifier);
+
 }

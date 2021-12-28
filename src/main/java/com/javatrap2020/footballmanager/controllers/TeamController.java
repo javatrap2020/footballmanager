@@ -63,9 +63,11 @@ public class TeamController {
     @PostMapping("")
     public ResponseEntity<?> createNewTeam(@Valid @RequestBody Team team, BindingResult bindingResult) {
         ResponseEntity<?> errorMap = mapValidationErrorService.validationService(bindingResult);
-        if (errorMap != null) return  errorMap;
+        if (errorMap != null) {
+            return  errorMap;
+        }
         Team team1 = teamService.saveOrUpdate(team);
-        return new ResponseEntity<>(team, HttpStatus.CREATED);
+        return new ResponseEntity<>(team1, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{teamIdentifier}")

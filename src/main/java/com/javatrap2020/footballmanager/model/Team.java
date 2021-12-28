@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,10 +27,11 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
 
-    @NotBlank(message = "Team name")
+    @NotBlank(message = "Team name is required")
     private String name;
 
-    @NotBlank(message = "Team identifier")
+    @NotBlank(message = "Team identifier is required")
+    @Size(min = 2, message = "Please use min 2 characters")
     @Column(updatable = false, unique = true)
     private String teamIdentifier;
 
@@ -39,32 +41,11 @@ public class Team {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "team_id", nullable = false)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "team")
     @JsonIgnore
-    private Team team;
-
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "team", orphanRemoval = true)
-    private List<Player> players = new ArrayList<>();
+    private TeamSquad teamSquad;
 
     public Team() {
-    }
-
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
     }
 
     public Long getId() {
@@ -107,6 +88,14 @@ public class Team {
         this.updatedAt = updatedAt;
     }
 
+    public TeamSquad getTeamSquad() {
+        return teamSquad;
+    }
+
+    public void setTeamSquad(TeamSquad teamSquad) {
+        this.teamSquad = teamSquad;
+    }
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = new Date();
@@ -126,6 +115,7 @@ public class Team {
                 ", teamIdentifier='" + teamIdentifier + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", teamSquad=" + teamSquad +
                 '}';
     }
 }
