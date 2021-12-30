@@ -35,7 +35,7 @@ public class Team {
     @Column(updatable = false, unique = true)
     private String teamIdentifier;
 
-    @JsonFormat(pattern = "yyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
