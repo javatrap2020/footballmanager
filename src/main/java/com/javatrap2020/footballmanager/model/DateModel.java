@@ -24,7 +24,6 @@ public abstract class DateModel implements Serializable {
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
     @JsonFormat(pattern = "yyyy-MM-dd")
-
     private Date createdAt;
 
 
