@@ -3,9 +3,11 @@ package com.javatrap2020.footballmanager;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class FootballmanagerApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {
