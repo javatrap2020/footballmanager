@@ -16,10 +16,10 @@ POST
 localhost:8087/team/
 {
    "id": 1,
-   "createdAt": 2021-12-31,
+   "createdAt": 20211231,
    "name":"Football",
    "teamIdentifier":"One1",
-   "updatedAt": 2021-12-31,
+   "updatedAt": 20211231,
    "teamId": 1
 }
 
