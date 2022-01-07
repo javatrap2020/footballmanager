@@ -1,4 +1,4 @@
-package com.javatrap2020.footballmanager;
+package com.javatrap2020.footballmanager.controller;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

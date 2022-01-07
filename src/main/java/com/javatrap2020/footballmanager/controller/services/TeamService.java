@@ -1,10 +1,10 @@
-package com.javatrap2020.footballmanager.services;
+package com.javatrap2020.footballmanager.controller.services;
 
-import com.javatrap2020.footballmanager.exceptions.TeamIdException;
-import com.javatrap2020.footballmanager.model.Team;
-import com.javatrap2020.footballmanager.model.TeamSquad;
-import com.javatrap2020.footballmanager.repositories.TeamRepository;
-import com.javatrap2020.footballmanager.repositories.TeamSquadRepository;
+import com.javatrap2020.footballmanager.controller.exceptions.TeamIdException;
+import com.javatrap2020.footballmanager.controller.model.TeamSquad;
+import com.javatrap2020.footballmanager.controller.model.Team;
+import com.javatrap2020.footballmanager.controller.repositories.TeamRepository;
+import com.javatrap2020.footballmanager.controller.repositories.TeamSquadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

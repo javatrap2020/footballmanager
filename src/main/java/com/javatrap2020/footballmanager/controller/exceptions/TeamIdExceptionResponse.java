@@ -1,4 +1,4 @@
-package com.javatrap2020.footballmanager.exceptions;
+package com.javatrap2020.footballmanager.controller.exceptions;
 
 public class TeamIdExceptionResponse {
     private String teamIdentifier;

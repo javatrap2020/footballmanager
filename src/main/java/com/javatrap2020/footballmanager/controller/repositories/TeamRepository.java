@@ -1,6 +1,6 @@
-package com.javatrap2020.footballmanager.repositories;
+package com.javatrap2020.footballmanager.controller.repositories;
 
-import com.javatrap2020.footballmanager.model.Team;
+import com.javatrap2020.footballmanager.controller.model.Team;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

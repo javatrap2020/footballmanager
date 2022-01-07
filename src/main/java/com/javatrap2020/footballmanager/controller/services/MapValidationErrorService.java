@@ -1,4 +1,4 @@
-package com.javatrap2020.footballmanager.services;
+package com.javatrap2020.footballmanager.controller.services;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

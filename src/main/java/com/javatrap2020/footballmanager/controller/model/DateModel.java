@@ -1,4 +1,4 @@
-package com.javatrap2020.footballmanager.model;
+package com.javatrap2020.footballmanager.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

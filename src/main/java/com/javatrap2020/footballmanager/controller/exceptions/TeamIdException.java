@@ -1,4 +1,4 @@
-package com.javatrap2020.footballmanager.exceptions;
+package com.javatrap2020.footballmanager.controller.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

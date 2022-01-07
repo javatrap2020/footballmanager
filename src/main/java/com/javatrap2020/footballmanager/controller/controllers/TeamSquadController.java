@@ -1,8 +1,8 @@
-package com.javatrap2020.footballmanager.controllers;
+package com.javatrap2020.footballmanager.controller.controllers;
 
-import com.javatrap2020.footballmanager.model.Player;
-import com.javatrap2020.footballmanager.services.MapValidationErrorService;
-import com.javatrap2020.footballmanager.services.PlayerService;
+import com.javatrap2020.footballmanager.controller.model.Player;
+import com.javatrap2020.footballmanager.controller.services.MapValidationErrorService;
+import com.javatrap2020.footballmanager.controller.services.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
